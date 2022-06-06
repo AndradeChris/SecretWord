@@ -1,13 +1,16 @@
-import React from 'react'
 import Button from '../../atomos/Button'
 import Title from '../../atomos/Title'
+import Instrucoes from '../../atomos/Instrucoes'
 
-const FirstPage = () => {
+import './index.css'
+
+const FirstPage = ({startGame}) => {
   return (
-    <>
+    <div className='container'>
         <Title />
-        <Button>Começar</Button>
-    </>
+        <Instrucoes />
+        <Button funcGame={startGame}>Começar</Button>        
+    </div>
   )
 }
 

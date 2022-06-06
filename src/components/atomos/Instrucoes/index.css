@@ -1,0 +1,19 @@
+.instrucoes{
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.disabled, .active{
+    list-style-type: square;
+    list-style-position: inside;
+    padding: 0;
+}
+
+.disabled{
+    display: none;
+}
+
+.active{
+    display: block;
+}

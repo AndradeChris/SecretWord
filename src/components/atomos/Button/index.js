@@ -1,9 +1,9 @@
 import './index.css'
 
-const Button = ({children}) => {
+const Button = ({funcGame, children}) => {
   return (
     <>
-        <button className='btn'>{children}</button>
+        <button className='btn' onClick={funcGame}>{children}</button>
     </>
   )
 }

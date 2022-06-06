@@ -1,9 +1,10 @@
 import './App.css';
+import FirstPage from './components/organismos/FirstPage';
 
 function App() {
   return (
     <div className="App">
-      <h1>Secret Word</h1>
+      <FirstPage />
     </div>
   );
 }

@@ -6,7 +6,7 @@ import './index.css'
 
 const FirstPage = ({startGame}) => {
   return (
-    <div className='container'>
+    <div>
         <Title />
         <Instrucoes />
         <Button funcGame={startGame}>Começar</Button>        

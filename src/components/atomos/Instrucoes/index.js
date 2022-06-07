@@ -9,11 +9,19 @@ const Instrucoes = () => {
       setDisplayValue(!displayValue)
   }
 
+  const [instrucoes, setInstrucoes] = useState([
+    {id: 1, texto: 'O jogo consiste em um jogo de palavras, onde você deve adivinhar as palavras que estão escondidas no tabuleiro'},
+    {id: 2, texto: 'Para começar, clique no botão "Iniciar" e uma categoria sera escolhida aleatoriamente'},
+    {id: 3, texto: 'Você deve adivinhar as palavras que estão escondidas no tabuleiro'},
+  ])
+
   return (
     <>
         <p className='instrucoes' onClick={mostrarInstrucoes}>Instruções</p>
         <ul className={displayValue ? 'disabled' : 'active'}>
-            <li>O jogo consiste em um tabuleiro de xadrez com 64 casas.</li>
+            {instrucoes.map((element, index) => (
+                <li key={index}>{element.texto}</li>
+            ))}
         </ul>
     </>
   )

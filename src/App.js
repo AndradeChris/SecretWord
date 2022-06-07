@@ -18,10 +18,25 @@ function App() {
   //State dos Stages
   const[stage, setStage] = useState(stagesVar[0].name);
   //State dos Palavras
-  const[words, setWords] = useState(wordsList);
+  const[wordsLista, setWordsLista] = useState(wordsList);
+  //States words, letters, category
+  const[words, setWords] = useState();
+  const[letters, setLetters] = useState();
+  const[category, setCategory] = useState();
+  //Function Pegar Palavra e categoria
+  const getWordAndCategory = () => {
+    const getCategorys = Object.keys(wordsLista);
+    const getCategory = getCategorys[Math.floor(Math.random() * getCategorys.length)];
+    const getWords = wordsLista[getCategory][Math.floor(Math.random() * wordsLista[getCategory].length)];
+    return {getCategory, getWords};
+  }
   //Function para Game
   const startGame = () =>{
     setStage(stagesVar[1].name);
+    const {getCategory, getWords} = getWordAndCategory();
+    setCategory({getCategory});
+    setWords({getWords});
+    setLetters(getWords.split(''));
   }
   //function para GameOver
   const endGame = () =>{

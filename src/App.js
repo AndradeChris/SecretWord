@@ -1,57 +1,69 @@
 //CSS
 import './App.css';
+
 //COMPONENTS
 import FirstPage from './components/organismos/FirstPage';
 import Game from './components/organismos/Game';
 import GameOver from './components/organismos/GameOver';
+
 //IMPORTS
 import { useState, useCallback, useEffect } from 'react';
 import { wordsList } from './data/words';
 
 function App() {
-  //Stage
-  const stagesVar = [
+
+  //Stages Game
+  const stages = [
     {id: 1, name: 'start'},
     {id: 2, name: 'game'},
     {id: 3, name: 'end'}
   ]
-  //State dos Stages
-  const[stage, setStage] = useState(stagesVar[0].name);
-  //State dos Palavras
-  const[wordsLista, setWordsLista] = useState(wordsList);
-  //States words, letters, category
+
+  //State actual stage
+  const[actualStage, setActualStage] = useState(stages[0].name);
+
+  //State  import words list
+  const[importWordsList, setImportWordsList] = useState(wordsList);
+
+  //States category, words, words letters
+  const[category, setCategory] = useState();
   const[words, setWords] = useState();
   const[letters, setLetters] = useState();
-  const[category, setCategory] = useState();
-  //Function Pegar Palavra e categoria
-  const getWordAndCategory = () => {
-    const getCategorys = Object.keys(wordsLista);
-    const getCategory = getCategorys[Math.floor(Math.random() * getCategorys.length)];
-    const getWords = wordsLista[getCategory][Math.floor(Math.random() * wordsLista[getCategory].length)];
-    return {getCategory, getWords};
+ 
+  //Function get category and word
+  const getCategoryAndWord = () => {
+    const allCategorys = Object.keys(importWordsList);
+    const randomCategory = allCategorys[Math.floor(Math.random() * allCategorys.length)];
+    const randomWords = importWordsList[randomCategory][Math.floor(Math.random() * importWordsList[randomCategory].length)];
+    return {randomCategory, randomWords};
   }
-  //Function para Game
+
+  //Function for starting game
   const startGame = () =>{
-    setStage(stagesVar[1].name);
-    const {getCategory, getWords} = getWordAndCategory();
-    setCategory({getCategory});
-    setWords({getWords});
-    setLetters(getWords.split(''));
+    setActualStage(stages[1].name);
+
+    //Return category and word funcition
+    const {randomCategory, randomWords} = getCategoryAndWord();
+
+    setCategory(randomCategory);
+    setWords(randomWords);  
+    const lowerLetters = randomWords.toLowerCase().split('');  
+    setLetters(lowerLetters);
   }
-  //function para GameOver
+  //function for game over
   const endGame = () =>{
-    setStage(stagesVar[2].name);
+    setActualStage(stages[2].name);
   }
-  //function para resetar o jogo
+  //function for reset game
   const resetGame = () =>{
-    setStage(stagesVar[0].name);
+    setActualStage(stages[0].name);
   }
 
   return (
     <div className="App">
-      { stage === 'start' && <FirstPage startGame={startGame} /> }
-      { stage === 'game' && <Game endGame={endGame} /> }
-      { stage === 'end' && <GameOver resetGame={resetGame} /> }
+      { actualStage === 'start' && <FirstPage startGame={startGame} /> }
+      { actualStage === 'game' && <Game endGame={endGame} /> }
+      { actualStage === 'end' && <GameOver resetGame={resetGame} /> }
     </div>
   );
 }

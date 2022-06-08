@@ -1,31 +1,42 @@
 *{box-sizing: border-box;}
 
 .container{
-    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 }
-
 
 .points{
     font-size: 2rem;
     font-weight: bold;
     text-align: start;
+    align-self: flex-start;
 }
 
 .category-tip{
-    text-align: start;
-    font-size: 1rem;
+    text-align: center;
+    font-size: 1.5rem;
     font-weight: bold;
+    margin: 0;
 }
 
 .letter-game-container{
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 0px 50px;
+    border: 10px solid rgb(0, 0, 0);
+    box-shadow: 10px 10px  black;
+}
+
+.letter-container{
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    padding: 50px;
-    margin: 50px;
-    border: 10px solid rgb(0, 0, 0);
-    box-shadow: 3px 10px 15px black;
 }
 
 .letter-game-card, .letter-game-card-empty{
@@ -39,6 +50,7 @@
     height: 130px;
     width: 105px;
     border: 2px solid black;
+    box-shadow: 5px 5px black;
     margin: 0 5px;
 }
 
@@ -63,6 +75,9 @@
     font-size: 80px;
     text-transform: uppercase;
     font-weight: bold;
+    box-shadow: 5px 5px black;
+    border: 2px solid black;
+    margin-top: 50px;
 }
 
 .input-letters-container button{
@@ -73,16 +88,22 @@
     padding: 4px 8px;
     font-size: 16px;
     font-weight: bold;
+    box-shadow: 5px 5px black;
+    border: 2px solid black;
 }
 
-.wrong-letters-and-attemps{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
+.input-letters-container button:hover{
+    background-color: white;
+    color: black;
 }
 
-.attemps, .wrong-letters{
+.wrong-letters {
+   font-size: 1rem;
+   font-weight: bold;
+   margin: 0;
+}
+
+.attemps{
     font-size: 1rem;
     font-weight: bold;
     margin: 10px 0px;

@@ -1,7 +1,7 @@
 import { useState } from "react";
-import './index.css'
+import styles from './index.module.css'
 
-const Title = () => {
+const Title = ({customTitleProp}) => {
     const stringTitle = 'Secretword'
     const stringTitleArray = stringTitle.split('')
     const [title] = useState(stringTitleArray);
@@ -10,9 +10,9 @@ const Title = () => {
     <>
         <h1>{title.map((word, index) => {
           if ((index + 1) % 2 === 0) {
-           return (<span className="letter-title" key={index}>{word}</span>)
+           return (<span className={styles[customTitleProp]} key={index}>{word}</span>)
           }else {
-            return (<span className="letter-title" style={{position: "relative", top: "10px"}}key={index}>{word}</span>)
+            return (<span className={styles[customTitleProp]} style={{position: "relative", top: "10px"}}key={index}>{word}</span>)
           }            
         })}</h1>
     </>

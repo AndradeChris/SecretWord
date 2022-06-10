@@ -1,13 +1,11 @@
-import React from 'react'
 import Button from '../../atomos/Button'
-import Instrucoes from '../../atomos/Instrucoes'
 import Title from '../../atomos/Title'
 
-const GameOver = ({resetGame}) => {
+const GameOver = ({resetGame, score}) => {
   return (
     <div>
         <Title />
-        <Instrucoes />
+        <h2>Sua pontuação foi: {score}</h2>
         <Button funcGame={resetGame}>Resetar</Button>   
     </div>
   )

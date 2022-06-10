@@ -31,7 +31,7 @@ function App() {
   const[wrongLetters, setWrongLetters] = useState([]);
   const [quantityChances] = useState(5);
   const[chances, setChances] = useState(quantityChances);
-  const[score, setScore] = useState(0);
+  const[score, setScore] = useState(1000);
  
   //Function get category and word
   const getCategoryAndWord = () => {
@@ -96,7 +96,7 @@ function App() {
     <div className="App">
       { actualStage === 'start' && <FirstPage startGame={startGame} /> }
       { actualStage === 'game' && <Game endGame={endGame} verifyLetter={verifyLetter} category={category} word={words} letters={letters} guessedLetters={guessedLetters} wrongLetters={wrongLetters} chances={chances} score={score}/> }
-      { actualStage === 'end' && <GameOver resetGame={resetGame} /> }
+      { actualStage === 'end' && <GameOver resetGame={resetGame} score={score}/> }
     </div>
   );
 }

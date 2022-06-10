@@ -1,8 +1,8 @@
 import { useState } from "react";
 import styles from './index.module.css'
 
-const Title = ({customTitleProp}) => {
-    const stringTitle = 'Secretword'
+const Title = ({children, customTitleProp}) => {
+    const stringTitle = children.toString()
     const stringTitleArray = stringTitle.split('')
     const [title] = useState(stringTitleArray);
         

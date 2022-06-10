@@ -7,7 +7,7 @@ import './index.css'
 const FirstPage = ({startGame}) => {
   return (
     <div>
-        <Title customTitleProp='max-title'/>
+        <Title customTitleProp='max-title'>SecretWord</Title>
         <Instrucoes />
         <Button funcGame={startGame}>Começar</Button>        
     </div>

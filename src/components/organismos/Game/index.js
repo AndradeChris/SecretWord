@@ -21,7 +21,7 @@ const Game = ({endGame, verifyLetter, category, words, letters, guessedLetters, 
 
   return (
     <div className='container'>
-        <Title customTitleProp='min-title'/>
+        <Title customTitleProp='min-title'>SecretWord</Title>
         <p className='points'>
           <span>Pontos: {score}</span>
           <p className='attemps'>Tentativas restantes: {chances}</p>

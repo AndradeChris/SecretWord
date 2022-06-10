@@ -19,16 +19,18 @@ function App() {
     {id: 3, name: 'end'}
   ]
 
-  //State actual stage
+
   const[actualStage, setActualStage] = useState(stages[0].name);
 
-  //State  import words list
   const[importWordsList, setImportWordsList] = useState(wordsList);
 
-  //States category, words, words letters
   const[category, setCategory] = useState();
   const[words, setWords] = useState();
   const[letters, setLetters] = useState();
+  const[guessedLetters, setGuessedLetters] = useState([]);
+  const[wrongLetters, setWrongLetters] = useState([]);
+  const[chances, setChances] = useState(5);
+  const[score, setScore] = useState(0);
  
   //Function get category and word
   const getCategoryAndWord = () => {
@@ -62,7 +64,7 @@ function App() {
   return (
     <div className="App">
       { actualStage === 'start' && <FirstPage startGame={startGame} /> }
-      { actualStage === 'game' && <Game endGame={endGame} /> }
+      { actualStage === 'game' && <Game endGame={endGame} category={category} word={words} letters={letters} guessedLetters={guessedLetters} wrongLetters={wrongLetters} chances={chances} score={score}/> }
       { actualStage === 'end' && <GameOver resetGame={resetGame} /> }
     </div>
   );

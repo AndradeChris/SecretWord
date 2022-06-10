@@ -7,22 +7,21 @@ import Game from './components/organismos/Game';
 import GameOver from './components/organismos/GameOver';
 
 //IMPORTS
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useMemo} from 'react';
 import { wordsList } from './data/words';
 
 function App() {
 
   //Stages Game
-  const stages = [
+  const stages = useMemo(() => [
     {id: 1, name: 'start'},
     {id: 2, name: 'game'},
     {id: 3, name: 'end'}
-  ]
-
+  ], [])
 
   const[actualStage, setActualStage] = useState(stages[0].name);
 
-  const[importWordsList, setImportWordsList] = useState(wordsList);
+  const[importWordsList] = useState(wordsList);
 
   const[category, setCategory] = useState();
   const[words, setWords] = useState();
@@ -31,18 +30,19 @@ function App() {
   const[wrongLetters, setWrongLetters] = useState([]);
   const [quantityChances] = useState(5);
   const[chances, setChances] = useState(quantityChances);
-  const[score, setScore] = useState(1000);
+  const[score, setScore] = useState(0);
  
   //Function get category and word
-  const getCategoryAndWord = () => {
+  const getCategoryAndWord = useCallback(() => {
     const allCategorys = Object.keys(importWordsList);
     const randomCategory = allCategorys[Math.floor(Math.random() * allCategorys.length)];
     const randomWords = importWordsList[randomCategory][Math.floor(Math.random() * importWordsList[randomCategory].length)];
     return {randomCategory, randomWords};
-  }
+  }, [importWordsList]);
 
   //Function for starting game
-  const startGame = () =>{
+  const startGame = useCallback(() =>{
+    clearAllStates()
     setActualStage(stages[1].name);
 
     //Return category and word funcition
@@ -52,7 +52,7 @@ function App() {
     setWords(randomWords);  
     const lowerLetters = randomWords.toLowerCase().split('');  
     setLetters(lowerLetters);
-  }
+  },[getCategoryAndWord, stages])
   //Function verify letter
   const verifyLetter = (inputLetter) => {
     const lowerInputLetter = inputLetter.toLowerCase();
@@ -79,7 +79,17 @@ function App() {
       clearAllStates();
 
       setActualStage(stages[2].name)
-  }}, [chances])
+  }}, [chances, stages])
+
+  useEffect(() => {
+    const uniquesLetters = [...new Set(letters)];
+
+    if(uniquesLetters.length === guessedLetters.length){
+      setScore((actualScore) => actualScore += 100);
+      startGame()
+    }
+  }, [guessedLetters, letters, startGame])
+
   //function for game over
   const endGame = () =>{
     setActualStage(stages[2].name);

@@ -1,10 +1,24 @@
-import React from 'react'
+import { useState, useRef} from 'react'
 import Button from '../../atomos/Button'
-import Instrucoes from '../../atomos/Instrucoes'
 import Title from '../../atomos/Title'
 import './index.css'
 
-const Game = ({endGame, category, words, letters, guessedLetters, wrongLetters, chances, score}) => {
+const Game = ({endGame, verifyLetter, category, words, letters, guessedLetters, wrongLetters, chances, score}) => {
+
+  const [inputLetter, setInputLetter] = useState('')
+  const inputLetterRef = useRef(null)
+
+  const submitInputLetter = (e) => {
+    e.preventDefault()
+    
+    verifyLetter(inputLetter)
+
+    setInputLetter('')
+
+    inputLetterRef.current.focus()
+  }
+  
+
   return (
     <div className='container'>
         <Title customTitleProp='min-title'/>
@@ -32,8 +46,8 @@ const Game = ({endGame, category, words, letters, guessedLetters, wrongLetters, 
           </div>
         </div>
         <div className='input-letters-container'>
-          <form>
-            <input type='text' className='letter-input' maxLength={1} required/>
+          <form onSubmit={submitInputLetter}>
+            <input type='text' className='letter-input' maxLength={1} required onChange={(e) => {setInputLetter(e.target.value)}} value={inputLetter} ref={inputLetterRef}/>
             <button>Jogar</button>
           </form>
         </div>

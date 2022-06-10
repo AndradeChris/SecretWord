@@ -52,6 +52,9 @@ function App() {
     const lowerLetters = randomWords.toLowerCase().split('');  
     setLetters(lowerLetters);
   }
+  //Function verify letter
+  const verifyLetter = (inputLetter) => {
+  }
   //function for game over
   const endGame = () =>{
     setActualStage(stages[2].name);
@@ -64,7 +67,7 @@ function App() {
   return (
     <div className="App">
       { actualStage === 'start' && <FirstPage startGame={startGame} /> }
-      { actualStage === 'game' && <Game endGame={endGame} category={category} word={words} letters={letters} guessedLetters={guessedLetters} wrongLetters={wrongLetters} chances={chances} score={score}/> }
+      { actualStage === 'game' && <Game endGame={endGame} verifyLetter={verifyLetter} category={category} word={words} letters={letters} guessedLetters={guessedLetters} wrongLetters={wrongLetters} chances={chances} score={score}/> }
       { actualStage === 'end' && <GameOver resetGame={resetGame} /> }
     </div>
   );

@@ -29,7 +29,8 @@ function App() {
   const[letters, setLetters] = useState();
   const[guessedLetters, setGuessedLetters] = useState([]);
   const[wrongLetters, setWrongLetters] = useState([]);
-  const[chances, setChances] = useState(5);
+  const [quantityChances] = useState(5);
+  const[chances, setChances] = useState(quantityChances);
   const[score, setScore] = useState(0);
  
   //Function get category and word
@@ -54,13 +55,40 @@ function App() {
   }
   //Function verify letter
   const verifyLetter = (inputLetter) => {
+    const lowerInputLetter = inputLetter.toLowerCase();
+
+    if( guessedLetters.includes(lowerInputLetter) || wrongLetters.includes(lowerInputLetter) ){
+      return;
+    }
+
+    if(letters.includes(lowerInputLetter)){
+      setGuessedLetters((actualGuessedLetters) => [...actualGuessedLetters, lowerInputLetter]);
+  } else {
+      setWrongLetters((actualWrongLetters) => [...actualWrongLetters, lowerInputLetter]);
+      setChances((actualChances) => actualChances - 1);
+  }}
+
+  const clearAllStates = () => {
+    setGuessedLetters([]);
+    setWrongLetters([]);
   }
+
+  useEffect(() => {
+    if(chances <= 0){
+      //clear all states
+      clearAllStates();
+
+      setActualStage(stages[2].name)
+  }}, [chances])
   //function for game over
   const endGame = () =>{
     setActualStage(stages[2].name);
   }
   //function for reset game
   const resetGame = () =>{
+    setScore(0);
+    setChances(quantityChances);
+
     setActualStage(stages[0].name);
   }
 

@@ -23,7 +23,7 @@ const Game = ({endGame, verifyLetter, category, words, letters, guessedLetters, 
     <div className='container'>
         <Title customTitleProp='min-title'/>
         <p className='points'>
-          <span>{score}</span>
+          <span>Pontos: {score}</span>
           <p className='attemps'>Tentativas restantes: {chances}</p>
         </p>
         <div className="letter-game-container">

@@ -52,6 +52,7 @@
     border: 2px solid black;
     box-shadow: 5px 5px black;
     margin: 0 5px;
+    text-transform: uppercase;
 }
 
 .input-letters-container, .input-letters-container form{
@@ -107,4 +108,8 @@
     font-size: 1rem;
     font-weight: bold;
     margin: 10px 0px;
+}
+
+.wrong-letters-container{
+    text-transform: uppercase;
 }

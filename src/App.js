@@ -84,7 +84,7 @@ function App() {
   useEffect(() => {
     const uniquesLetters = [...new Set(letters)];
 
-    if(uniquesLetters.length === guessedLetters.length){
+    if((guessedLetters.length !== 0) && (uniquesLetters.length === guessedLetters.length)){
       setScore((actualScore) => actualScore += 100);
       startGame()
     }
